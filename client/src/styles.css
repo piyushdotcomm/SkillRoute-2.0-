@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-surface: #F8FAFC; /* light background */
+  --color-surface-alt: #FFFFFF;
+  --color-text-base: #0F172A;
+  --color-text-soft: #475569;
+}
+.dark {
+  --color-surface: #0F172A; /* dark background */
+  --color-surface-alt: #1E293B;
+  --color-text-base: #E2E8F0;
+  --color-text-soft: #94A3B8;
+}
+
+body { @apply font-sans; }
+
+/* Playful Duolingo-inspired typographic scale */
+.h1 { @apply text-4xl md:text-5xl font-extrabold tracking-tight; }
+.h2 { @apply text-3xl font-bold; }
+.h3 { @apply text-2xl font-bold; }
+.lead { @apply text-lg text-softText; }
+
+.card { @apply bg-surfaceAlt rounded-2xl shadow-lg p-6 transition hover:shadow-soft; }
+.btn { @apply inline-flex items-center justify-center gap-2 font-semibold rounded-2xl px-6 py-3 bg-primary text-white shadow-lg hover:bg-primary-dark active:scale-95 transition transform; }
+.btn-outline { @apply border-2 border-primary text-primary hover:bg-primary hover:text-white; }
+.badge { @apply inline-block rounded-full bg-badge text-black text-xs font-semibold px-3 py-1; }
+input, select { @apply rounded-xl border border-gray-300 dark:border-gray-600 bg-surfaceAlt px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary; }
+
+/* Scrollbar theming (optional) */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 8px; }
+.dark ::-webkit-scrollbar-thumb { background: #334155; }

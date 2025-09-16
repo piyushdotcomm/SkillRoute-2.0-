@@ -1,0 +1,19 @@
+{
+  "recommended_streams": ["Engineering", "Computer Science"],
+  "recommended_degrees": [
+    {
+      "name": "B.Tech Computer Engineering",
+      "description": "Focus on software systems, algorithms, and emerging tech.",
+      "average_salary_range": "4-12 LPA",
+      "key_job_roles": ["Software Developer", "Data Analyst"],
+      "government_exams": ["GATE", "ISRO Scientist"],
+      "growth_outlook": "High demand with AI & automation expansion."
+    }
+  ],
+  "suggested_colleges": ["IIT Sample", "Government Engineering College A"],
+  "next_steps": [
+    "Strengthen math basics",
+    "Practice logical reasoning",
+    "Explore small coding projects"
+  ]
+}

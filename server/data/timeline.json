@@ -1,0 +1,42 @@
+[
+  {
+    "id": "event1",
+    "title": "JEE Main Session 1 Registration Opens",
+    "date": "2025-11-01",
+    "type": "exam",
+    "description": "Start filling application form online.",
+    "tags": ["Engineering", "JEE"]
+  },
+  {
+    "id": "event2",
+    "title": "MHT-CET Application Deadline",
+    "date": "2026-01-15",
+    "type": "deadline",
+    "description": "Last date to submit without late fee.",
+    "tags": ["Engineering", "Pharmacy"]
+  },
+  {
+    "id": "event3",
+    "title": "Scholarship XYZ Window",
+    "date": "2025-12-05",
+    "type": "scholarship",
+    "description": "Apply for need-based scholarship.",
+    "tags": ["All Streams"]
+  },
+  {
+    "id": "event4",
+    "title": "NEET 2026 Registration Opens",
+    "date": "2025-12-10",
+    "type": "exam",
+    "description": "Online registration begins.",
+    "tags": ["Medical", "NEET"]
+  },
+  {
+    "id": "event5",
+    "title": "College Admission Round 1 (Pune University)",
+    "date": "2025-07-05",
+    "type": "admission",
+    "description": "Merit list publication and seat acceptance.",
+    "tags": ["Undergraduate"]
+  }
+]
