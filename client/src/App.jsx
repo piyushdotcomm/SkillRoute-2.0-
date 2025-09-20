@@ -29,7 +29,7 @@ function AppShell({ children }) {
     <div className="min-h-screen flex flex-col">
       <header className="flex items-center justify-between px-4 md:px-6 py-3 bg-surfaceAlt/80 backdrop-blur shadow-soft sticky top-0 z-40">
         <Link to="/" className="flex items-center gap-2 font-extrabold text-lg md:text-xl text-primary">
-          <span>🎯 CareerPath</span>
+          <span>SkillRoute</span>
         </Link>
         <nav className="hidden md:flex gap-6 text-sm font-semibold">
           <Link to="/quiz" className="hover:text-primary">Quiz</Link>

@@ -50,6 +50,12 @@ export default function Directory(){
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filteredColleges.map(c => (
           <motion.div key={c.id} initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} className="card space-y-2">
+             <a
+    href={c.official_link}
+    target="_blank"
+    rel="noopener noreferrer"
+    // className="block card space-y-2 hover:shadow-lg transition"
+  >
             <h3 className="h3 text-lg">{c.name}</h3>
             <p className="text-sm text-softText">District: {c.district}</p>
             <div className="text-xs flex flex-wrap gap-2">
@@ -57,6 +63,7 @@ export default function Directory(){
             </div>
             <p className="text-xs text-softText">Facilities: {c.facilities.join(', ')}</p>
             <p className="text-xs text-softText">Exams: {c.exams.join(', ')}</p>
+            </a>
           </motion.div>
         ))}
       </div>
