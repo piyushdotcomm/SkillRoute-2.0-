@@ -11,7 +11,7 @@ import ThemeToggle from './components/ThemeToggle.jsx';
 import Chatbot from './components/Chatbot.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
 import Profile from './pages/Profile.jsx';
-
+import GoogleTranslate from './components/GoogleTranslate.jsx';
 const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 const AuthContext = createContext();
@@ -37,7 +37,10 @@ function AppShell({ children }) {
           <Link to="/timeline" className="hover:text-primary">Timeline</Link>
           <Link to="/recs" className="hover:text-primary">Results</Link>
         </nav>
-        <div className="flex items-center gap-2 md:gap-3">
+        <div className="flex items-center gap-4 md:gap-6">
+         <div id="google_translate_element" className="truncate">
+         <GoogleTranslate />
+        </div>
           <ThemeToggle />
           {!user && <Link to="/login" className="btn px-4 py-2 text-xs md:text-sm">Login</Link>}
           {user && (

@@ -38,5 +38,5 @@ export async function getColleges(){
 }
 
 export async function getTimeline(){
-  return http('/mistra/timeline', { method:'GET' });
+  return http('/gemini/timeline', { method:'GET' });
 }

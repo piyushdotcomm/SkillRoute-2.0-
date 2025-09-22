@@ -121,11 +121,11 @@ export default function Home() {
           className="relative hidden md:block"
         >
           {/* Placeholder for an appealing hero illustration/image */}
-          <img
-            src="https://images.unsplash.com/photo-1596496660144-d1385cc9d264?q=80&w=1974&auto=format&fit=crop"
+          {/* <img
+            src=""
             alt="Students collaborating and learning with technology"
             className="rounded-3xl shadow-2xl border border-border"
-          />
+          /> */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -160,7 +160,7 @@ export default function Home() {
             icon={FaRegLightbulb}
             title="1. Take the AI-Powered Quiz"
             description="Click the 'Take Quick Quiz' button to begin. Answer insightful questions about your interests, aptitudes, and career aspirations. Our intelligent AI then processes your responses to craft a highly personalized profile and recommend ideal academic paths."
-            image="https://images.unsplash.com/photo-1542831371-d108990326ab?q=80&w=2070&auto=format&fit=crop" // Image for quiz taking
+            image="https://www.ecpi.edu/sites/default/files/online_44.png" // Image for quiz taking
         />
         <HowToStep
             icon={FaUniversity}
@@ -186,7 +186,7 @@ export default function Home() {
             icon={FaCalendarAlt}
             title="5. Track Key Dates & Deadlines"
             description="Never miss an application deadline or exam registration again! Our integrated timeline tracker keeps you informed about crucial dates for competitive exams, university admissions, and scholarship applications, ensuring you're always prepared."
-            image="https://images.unsplash.com/photo-1581090425026-b81643c72b2d?q=80&w=1974&auto=format&fit=crop" // Image for calendar/deadlines
+            image="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1974&auto=format&fit=crop" // Image for calendar/deadlines
         />
       </section>
 
