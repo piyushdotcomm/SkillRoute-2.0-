@@ -19,8 +19,8 @@ app.use(cors({
 app.use(express.json());
 
 // ✅ Mongo connection
-if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI, {
+if (process.env.MONGO_DB) {
+  mongoose.connect(process.env.MONGO_DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
