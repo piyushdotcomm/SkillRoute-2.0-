@@ -18,9 +18,17 @@ router.post('/login', async (_req, res) => {
 // TODO: Integrate firebase-admin to verify ID token signature.
 router.post('/google', async (req, res) => {
   try {
-    const { idToken, email, name, photoURL } = req.body || {};
-    if (!idToken) return res.status(400).json({ error: 'Missing idToken' });
-    if (!email) return res.status(400).json({ error: 'Missing email' });
+    const payload = req.body || {};
+    console.log('[AUTH] /google payload:', payload ? Object.keys(payload) : payload);
+    const { idToken, email, name, photoURL } = payload;
+    if (!idToken) {
+      console.warn('[AUTH] Missing idToken in request');
+      return res.status(400).json({ error: 'Missing idToken' });
+    }
+    if (!email) {
+      console.warn('[AUTH] Missing email in request');
+      return res.status(400).json({ error: 'Missing email' });
+    }
     let user = await User.findOne({ email }).exec();
     if (!user) {
       user = await User.create({ email, name, photoURL, provider: 'google' });
@@ -32,8 +40,8 @@ router.post('/google', async (req, res) => {
     const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET || 'dev-secret', { expiresIn: '7d' });
     res.json({ token, user: { email: user.email, name: user.name, photoURL: user.photoURL } });
   } catch (e) {
-    console.error('Google auth error', e);
-    res.status(500).json({ error: 'Auth failed' });
+    console.error('Google auth error', e && e.stack ? e.stack : e);
+    res.status(500).json({ error: 'Auth failed', detail: e.message || String(e) });
   }
 });
 
