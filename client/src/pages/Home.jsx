@@ -2,264 +2,310 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  Lightbulb,
-  Building2,
-  GraduationCap,
-  Bot,
-  Calendar,
-  Search,
-  ClipboardList,
-  MessageCircle,
-  Briefcase,
-  Laptop,
-  Stethoscope,
-  Scale,
-  TrendingUp,
-  Star,
+  Compass,
+  BookOpen,
+  Award,
   ArrowRight,
-  CheckCircle2
+  TrendingUp,
+  Users,
+  CheckCircle2,
+  BrainCircuit,
+  GraduationCap,
+  Briefcase,
+  LineChart,
+  Target
 } from 'lucide-react';
+import { ContainerScroll } from '../components/ui/container-scroll-animation';
+import { CardStack } from '../components/ui/card-stack';
+import { CategoryList } from '../components/ui/category-list';
+import { TextScramble } from '../components/ui/text-scramble';
 
-const containerVariants = {
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
-const HowToStep = ({ icon: Icon, title, description, image, reverse = false }) => {
-  return (
-    <div className={`grid md:grid-cols-2 gap-12 items-center ${reverse ? 'md:grid-flow-dense' : ''}`}>
-      <motion.div
-        initial={{ opacity: 0, x: reverse ? 30 : -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className={`bg-card p-8 rounded-3xl border border-border shadow-soft hover:shadow-lg transition-all duration-300 group ${reverse ? 'md:col-start-2' : ''}`}
-      >
-        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
-          <Icon size={28} />
-        </div>
-        <h3 className="text-2xl font-bold mb-4">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed text-lg">{description}</p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className={`relative ${reverse ? 'md:col-start-1' : ''}`}
-      >
-        <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl blur-2xl -z-10" />
-        <img src={image} alt={title} className="rounded-3xl shadow-xl w-full aspect-video object-cover border border-border/50 bg-muted" />
-      </motion.div>
-    </div>
-  );
+      staggerChildren: 0.2
+    }
+  }
 };
 
 export default function Home() {
   return (
-    <div className="space-y-32 pb-20">
+    <div className="flex flex-col min-h-screen">
 
-      {/* Hero Section */}
-      <section className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[80vh] pt-10 lg:pt-0">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8"
-        >
-          <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              AI-Powered Career Guidance
-            </div>
-            <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
-              Find Your Ideal <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Career Path</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-              Map your interests to real-world opportunities. Get personalized course recommendations, college insights, and a tailored roadmap for your future.
-            </p>
-          </div>
+      {/* 1. HERO SECTION WITH SCROLL ANIMATION */}
+      <section className="relative bg-transparent overflow-hidden">
+        <ContainerScroll
+          titleComponent={
+            <div className="flex flex-col items-center justify-center gap-8 mb-10 px-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-medium border border-blue-100 dark:border-blue-800"
+              >
+                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                For Students (Class 10-12) & Parents
+              </motion.div>
 
-          <div className="flex flex-wrap gap-4">
-            <Link to="/quiz" className="btn h-14 px-8 text-lg shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 transition-all">
-              Take the Quiz <ArrowRight className="ml-2" size={20} />
-            </Link>
-            <Link to="/directory" className="btn-secondary h-14 px-8 text-lg border-2 border-transparent hover:border-border transition-all">
-              Explore Colleges
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-6 pt-4 text-sm font-medium text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-green-500" /> <span>Personalized Roadmap</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle2 size={16} className="text-green-500" /> <span>Government Verified</span>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative hidden lg:block"
-        >
-          <div className="relative z-10 bg-gradient-to-br from-primary/5 to-secondary/10 rounded-[2.5rem] p-8 border border-border/50 shadow-2xl backdrop-blur-sm">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/20 blur-[100px] -z-10 rounded-full" />
-            <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-              alt="Students learning"
-              className="rounded-3xl shadow-lg w-full h-auto"
-            />
-
-            <div className="absolute -bottom-10 -right-10 bg-card p-6 rounded-2xl shadow-xl border border-border max-w-xs animate-float">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-xl">
-                  <TrendingUp size={24} />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-slate-50 leading-[0.9] text-center"
+              >
+                <TextScramble className="block" duration={1.2}>
+                  Confusion to
+                </TextScramble>
+                <div className="text-blue-600 dark:text-blue-400">
+                  <TextScramble className="block" duration={1.2} characterSet=". ">
+                    Clarity.
+                  </TextScramble>
                 </div>
-                <div>
-                  <p className="font-bold text-lg">95% Accuracy</p>
-                  <p className="text-sm text-muted-foreground">in career predictions based on student profiles.</p>
-                </div>
-              </div>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl text-center leading-relaxed font-medum"
+              >
+                Stop guessing your future. Our scientific assessment analyzes your strengths to match you with the perfect stream and career path.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="flex flex-col sm:flex-row gap-4 pt-4"
+              >
+                <Link to="/quiz" className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all hover:-translate-y-1">
+                  Start Free Assessment <ArrowRight size={20} />
+                </Link>
+                <Link to="/directory" className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-slate-700 dark:text-slate-300 border-2 border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 transition-all">
+                  Explore Careers
+                </Link>
+              </motion.div>
             </div>
-          </div>
-        </motion.div>
+          }
+        >
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop"
+            alt="SkillRoute Dashboard Preview"
+            draggable={false}
+            className="mx-auto rounded-2xl object-cover h-full object-left-top w-full"
+          />
+        </ContainerScroll>
       </section>
 
-      {/* How It Works */}
-      <section className="space-y-16">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Your Journey Starts Here</h2>
-          <p className="text-muted-foreground text-lg">Four simple steps to clarify your future and take the first step towards success.</p>
-        </div>
-
-        <div className="space-y-24">
-          <HowToStep
-            icon={Bot}
-            title="1. AI-Powered Assessment"
-            description="Answer insightful questions about your interests, strengths, and preferences. Our advanced AI analyzes your profile to understand your unique potential."
-            image="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=2072&auto=format&fit=crop"
-          />
-          <HowToStep
-            icon={GraduationCap}
-            title="2. Get Matched"
-            description="Receive personalized recommendations for degree streams, colleges, and career paths that perfectly align with your assessment results."
-            image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
-            reverse={true}
-          />
-          <HowToStep
-            icon={Building2}
-            title="3. Explore Institutions"
-            description="Browse our comprehensive directory of government and top-tier colleges. Filter by location, ranking, and facilities to find your dream campus."
-            image="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop"
-          />
-          <HowToStep
-            icon={Calendar}
-            title="4. Stay on Track"
-            description="Never miss a deadline. Our timeline feature keeps you updated on entrance exams, application dates, and counseling schedules."
-            image="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop"
-            reverse={true}
-          />
-        </div>
-      </section>
-
-      {/* Core Features Grid */}
-      <section className="py-20 bg-muted/30 -mx-4 px-4 sm:-mx-8 sm:px-8 lg:-mx-16 lg:px-16 rounded-[3rem]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Everything You Need</h2>
-            <p className="text-muted-foreground text-lg">Powerful tools designed to simplify your academic decision-making process.</p>
-          </div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+      {/* 2. TRUST / CREDIBILITY (Minimal) */}
+      <section className="py-12 relative z-10 -mt-20 md:-mt-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { icon: Lightbulb, title: "Smart Recommendations", desc: "Tailored course and college suggestions." },
-              { icon: Search, title: "Deep Search", desc: "Advanced filters to find specific colleges." },
-              { icon: ClipboardList, title: "Action Plans", desc: "Step-by-step roadmap for your career." },
-              { icon: MessageCircle, title: "24/7 AI Chat", desc: "Instant answers to all your queries." },
-              { icon: Calendar, title: "Event Tracker", desc: "Notifications for exams and deadlines." },
-              { icon: TrendingUp, title: "Market Insights", desc: "Data on salary trends and job growth." }
-            ].map((item, i) => (
-              <motion.div variants={itemVariants} key={i} className="bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                  <item.icon size={24} />
+              { label: "Students Guided", value: "10,000+" },
+              { label: "Career Paths", value: "150+" },
+              { label: "Colleges Listed", value: "500+" },
+              { label: "Accuracy Rate", value: "94%" }
+            ].map((stat, i) => (
+              <div key={i} className="space-y-1">
+                <div className="text-3xl font-bold text-slate-900 dark:text-white">{stat.value}</div>
+                <div className="text-sm font-medium text-slate-500 uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. HOW IT WORKS (Replaced with CategoryList) */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
+
+        <CategoryList
+          title="Your Journey to Success"
+          subtitle="4 Simple Steps to Clarity"
+          headerIcon={<Compass className="w-8 h-8" />}
+          categories={[
+            {
+              id: 1,
+              title: "Discover Yourself",
+              subtitle: "Take our AI-powered assessment to uncover your true strengths and interests.",
+              icon: <BrainCircuit className="w-8 h-8" />,
+              featured: true
+            },
+            {
+              id: 2,
+              title: "Get Personalized Report",
+              subtitle: "Receive a detailed analysis of your personality and aptitude.",
+              icon: <LineChart className="w-8 h-8" />
+            },
+            {
+              id: 3,
+              title: "Explore Career Paths",
+              subtitle: "Browse through hundreds of career options tailored just for you.",
+              icon: <Briefcase className="w-8 h-8" />
+            },
+            {
+              id: 4,
+              title: "Plan Your Roadmap",
+              subtitle: "Get a step-by-step guide to achieve your career goals.",
+              icon: <TrendingUp className="w-8 h-8" />
+            }
+          ]}
+        />
+      </section>
+
+      {/* 4. STREAM OVERVIEW */}
+      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Explore Academic Streams</h2>
+            <p className="text-slate-600 dark:text-slate-400 max-w-xl">Not sure between Science, Commerce, or Arts? Here's a quick look at what each entails.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Science (PCM)", sub: "Engineering & Tech", text: "Physics, Math, Chemistry. Best for analytical minds." },
+              { title: "Science (PCB)", sub: "Medical & Research", text: "Biology, Physics, Chemistry. For healthcare enthusiasts." },
+              { title: "Commerce", sub: "Business & Finance", text: "Accounting, Economics, Business. For number crunchers." },
+              { title: "Arts / Humanities", sub: "Creativity & Social", text: "Psychology, History, Lit. For deep thinkers." }
+            ].map((stream, i) => (
+              <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 hover:shadow-lg transition-shadow">
+                <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{stream.title}</h3>
+                <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-3">{stream.sub}</div>
+                <p className="text-sm text-slate-500">{stream.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. HOW IT WORKS */}
+      <section className="py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">How It Works</h2>
+          </div>
+
+          <div className="space-y-12">
+            {[
+              { icon: Compass, title: "1. Take the Assessment", desc: "Short, engaging questions about your likes, dislikes, and aptitude." },
+              { icon: BrainCircuit, title: "2. AI Analysis", desc: "Our engine maps your profile against 500+ career parameters." },
+              { icon: BookOpen, title: "3. View Your Roadmap", desc: "Get a detailed report with top streams, colleges, and exams." },
+              { icon: Award, title: "4. Create Action Plan", desc: "Set goals and track important deadlines for admissions." },
+            ].map((step, i) => (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                key={i}
+                className="flex gap-6 md:items-center"
+              >
+                <div className="w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700 font-bold text-xl text-slate-400">
+                  {i + 1}
                 </div>
-                <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-                <p className="text-muted-foreground">{item.desc}</p>
+                <div className="md:flex md:items-center md:gap-6 flex-1 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
+                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg w-fit mb-4 md:mb-0">
+                    <step.icon size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
+                    <p className="text-slate-500">{step.desc}</p>
+                  </div>
+                </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Popular Streams */}
-      <section className="text-center space-y-12">
-        <h2 className="text-3xl font-bold tracking-tight">Trending Career Paths</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { icon: Laptop, title: "Engineering", color: "text-blue-500", bg: "bg-blue-500/10" },
-            { icon: Stethoscope, title: "Medical", color: "text-emerald-500", bg: "bg-emerald-500/10" },
-            { icon: Scale, title: "Law", color: "text-amber-500", bg: "bg-amber-500/10" },
-            { icon: Briefcase, title: "Management", color: "text-purple-500", bg: "bg-purple-500/10" }
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-2xl bg-card border border-border shadow-sm hover:shadow-lg transition-all cursor-pointer"
-            >
-              <div className="w-16 h-16 mx-auto rounded-full bg-primary/5 text-primary flex items-center justify-center mb-4 transition-colors group-hover:bg-primary/10">
-                <item.icon size={32} />
-              </div>
-              <h3 className="font-bold text-lg">{item.title}</h3>
-            </motion.div>
-          ))}
+      {/* SUCCESS STORIES (Card Stack) */}
+      {/* SUCCESS STORIES (Card Stack) */}
+      {/* SUCCESS STORIES (Card Stack) */}
+      <section className="py-24 px-6 bg-transparent">
+        <div className="w-full max-w-[90vw] mx-auto flex flex-col items-center">
+          <div className="text-center mb-16 max-w-2xl">
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Success Stories</h2>
+            <p className="text-slate-600 dark:text-slate-400">See how SkillRoute has helped students find their true calling.</p>
+          </div>
+          <CardStack
+            items={[
+              {
+                id: 1,
+                title: "Aarav Sharma",
+                description: "Found my passion for Data Science after being confused between Engineering and Economics.",
+                date: "July 2024",
+                color: "bg-blue-100 dark:bg-blue-900"
+              },
+              {
+                id: 2,
+                title: "Priya Patel",
+                description: "SkillRoute helped me discover a career in Sustainable Architecture I never knew existed.",
+                date: "May 2024",
+                color: "bg-emerald-100 dark:bg-emerald-900"
+              },
+              {
+                id: 3,
+                title: "Rohan Gupta",
+                description: "The detailed roadmap gave me the confidence to switch from PCB to Humanities.",
+                date: "March 2024",
+                color: "bg-purple-100 dark:bg-purple-900"
+              },
+              {
+                id: 4,
+                title: "Ananya Singh",
+                description: "I was lost, but the AI assessment pinpointed my strengths in Psychology perfectly.",
+                date: "January 2024",
+                color: "bg-amber-100 dark:bg-amber-900"
+              },
+              {
+                id: 5,
+                title: "Vikram Malhotra",
+                description: "Clear, unbiased advice that my parents and I both agreed on. Highly recommended!",
+                date: "December 2023",
+                color: "bg-rose-100 dark:bg-rose-900"
+              }
+            ]}
+            cardHeight={350}
+            cardWidth={500}
+            maxVisible={5}
+            autoAdvance={true}
+          />
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative overflow-hidden rounded-[2.5rem] bg-primary px-6 py-20 text-center text-primary-foreground shadow-2xl">
-        <div className="relative z-10 max-w-2xl mx-auto space-y-8">
-          <h2 className="text-4xl font-extrabold tracking-tight">Ready to Shape Your Future?</h2>
-          <p className="text-primary-foreground/90 text-xl max-w-xl mx-auto">
-            Join thousands of students making informed career decisions with SkillRoute's AI-powered guidance.
-          </p>
-          <Link to="/quiz" className="inline-flex items-center btn bg-background text-foreground hover:bg-surfaceAlt h-14 px-10 text-lg shadow-xl hover:scale-105 transition-all">
-            Start Free Quiz Now <ArrowRight className="ml-2" />
-          </Link>
-        </div>
+      {/* 6. FINAL CTA */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-blue-600 dark:bg-blue-700 rounded-[2.5rem] p-12 md:p-20 text-center relative overflow-hidden">
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Don't leave your future to chance.</h2>
+            <p className="text-blue-100 text-lg max-w-2xl mx-auto">
+              Join thousands of students who found their perfect stream with SkillRoute. It's free, fast, and scientific.
+            </p>
+            <Link to="/quiz" className="inline-flex items-center gap-2 bg-white text-blue-700 px-10 py-5 rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all">
+              Start Your Journey <ArrowRight size={20} />
+            </Link>
+          </div>
 
-        {/* Decorative circles */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+          {/* Decorative */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white blur-3xl" />
+            <div className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-white blur-3xl" />
+          </div>
+        </div>
       </section>
 
     </div>

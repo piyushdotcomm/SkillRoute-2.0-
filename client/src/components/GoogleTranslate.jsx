@@ -1,6 +1,6 @@
-import { color } from "framer-motion";
-import { useEffect } from "react";
-import React from "react";
+import React, { useEffect } from "react";
+import { Globe } from "lucide-react";
+
 const GoogleTranslate = () => {
     useEffect(() => {
         // Prevent duplicate script injection
@@ -27,28 +27,78 @@ const GoogleTranslate = () => {
         script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
         script.async = true;
         document.body.appendChild(script);
-
-        // Cleanup
-        // return () => {
-        //     const script = document.getElementById("google-translate-script");
-        //     if (script) script.remove();
-        //     if (window.googleTranslateElementInit) delete window.googleTranslateElementInit;
-        // };
     }, []);
 
     return (
-        <div
-            id="google_translate_element"
-            style={{
-                position: "relative", // optional: change to "relative" if you want normal flow
-                top: 12,
-                right: 24,
-                whiteSpace: "nowrap", // Prevents the dropdown from breaking into multiple lines
-                zIndex: 2000,
-                background: "transparent",
+        <div className="relative flex items-center justify-center">
+            <div id="google_translate_element" />
+
+            {/* Global Styles Override for Google Widget */}
+            <style>{`
+                /* Container Style */
+                .goog-te-gadget-simple {
+                    background-color: transparent !important;
+                    border: 1px solid hsl(var(--border)) !important; 
+                    padding: 6px 10px !important;
+                    border-radius: 0.5rem !important;
+                    font-size: 0.875rem !important;
+                    font-family: inherit !important;
+                    cursor: pointer !important;
+                    transition: all 0.2s ease !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    color: hsl(var(--muted-foreground)) !important;
+                }
                 
-            }}
-        />
+                .goog-te-gadget-simple:hover {
+                    background-color: hsl(var(--muted) / 0.5) !important;
+                    color: hsl(var(--foreground)) !important;
+                }
+
+                /* Hide Google Icon */
+                .goog-te-gadget-icon {
+                    display: none !important;
+                }
+
+                /* Text Styling */
+                .goog-te-menu-value {
+                    margin: 0 !important;
+                    display: flex !important;
+                    align-items: center !important;
+                }
+                
+                .goog-te-menu-value span {
+                    color: inherit !important;
+                    font-weight: 500 !important;
+                    border: none !important;
+                }
+
+                /* Hide the pipe | separator if present */
+                .goog-te-menu-value span:nth-child(2) {
+                    display: none !important;
+                }
+
+                /* Dropdown Arrow - optimize or hide if needed */
+                .goog-te-menu-value span:last-child {
+                    font-size: 10px !important;
+                    opacity: 0.7;
+                    margin-left: 4px;
+                }
+
+                /* Hide top banner frame */
+                body { top: 0 !important; }
+                .goog-te-banner-frame { display: none !important; }
+                
+                /* Hide tooltips */
+                .goog-tooltip {
+                    display: none !important;
+                }
+                
+                .goog-te-gadget-simple .goog-te-menu-value {
+                    color: inherit !important;
+                }
+            `}</style>
+        </div>
     );
 };
 
