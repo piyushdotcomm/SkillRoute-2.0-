@@ -13,8 +13,8 @@ export const TapedFooter = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="my-8 px-4 max-w-5xl md:max-w-7xl mx-auto w-full text-slate-900 dark:text-slate-100">
-            <div className="relative bg-white dark:bg-slate-900 rounded-3xl w-full px-4 py-10 flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl border border-slate-100 dark:border-slate-800">
+        <footer className="my-8 px-4 max-w-5xl md:max-w-7xl mx-auto w-full text-foreground">
+            <div className="relative bg-card rounded-3xl w-full px-4 py-10 flex flex-col md:flex-row justify-between items-center gap-6 shadow-xl border border-border">
                 <div className="hidden md:block absolute -top-4 -left-8 w-[80px] h-[36px] scale-75 cursor-default select-none pointer-events-none">
                     {tape}
                 </div>
@@ -25,11 +25,11 @@ export const TapedFooter = () => {
                     <div className='flex flex-col items-start gap-4 max-w-sm'>
                         <Link
                             to="/"
-                            className="flex flex-row gap-2 items-center justify-start text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-violet-600 dark:from-blue-400 dark:to-violet-400"
+                            className="flex flex-row gap-2 items-center justify-start text-2xl font-bold text-foreground"
                         >
                             SkillRoute
                         </Link>
-                        <p className='text-slate-500 dark:text-slate-400 font-medium text-base text-balance pr-4'>
+                        <p className='text-muted-foreground font-medium text-base text-balance pr-4'>
                             A data-driven career companion for students to find their perfect path without the guesswork.
                         </p>
                     </div>
@@ -37,22 +37,22 @@ export const TapedFooter = () => {
                     <div className='grid grid-cols-2 md:flex md:flex-row gap-8 md:gap-20 w-full md:w-auto'>
 
                         <div className='flex flex-col gap-4'>
-                            <h4 className='uppercase font-bold text-sm text-slate-400 tracking-wider'>Explore</h4>
+                            <h4 className='uppercase font-bold text-sm text-muted-foreground tracking-wider'>Explore</h4>
                             <div className="flex flex-col gap-2 text-sm">
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/quiz">Assessment</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/directory">Career Directory</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/timeline">Timeline</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/recs">Results</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/quiz">Assessment</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/directory">Career Directory</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/timeline">Timeline</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/recs">Results</Link>
                             </div>
                         </div>
 
                         <div className='flex flex-col gap-4'>
-                            <h4 className='uppercase font-bold text-sm text-slate-400 tracking-wider'>Company</h4>
+                            <h4 className='uppercase font-bold text-sm text-muted-foreground tracking-wider'>Company</h4>
                             <div className="flex flex-col gap-2 text-sm">
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/about">About Us</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/contact">Contact</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/privacy">Privacy Policy</Link>
-                                <Link className='text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors' to="/terms">Terms of Service</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/about">About Us</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/contact">Contact</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/privacy">Privacy Policy</Link>
+                                <Link className='text-muted-foreground hover:text-primary font-medium transition-colors' to="/terms">Terms of Service</Link>
                             </div>
                         </div>
 
@@ -61,17 +61,17 @@ export const TapedFooter = () => {
                 </div>
             </div>
 
-            <div className="my-6 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+            <div className="my-6 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
                 <p className="whitespace-nowrap">
                     © {currentYear} SkillRoute. All rights reserved.
                 </p>
 
                 <div className="flex gap-4 items-center">
                     {/* Socials placeholder */}
-                    <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Twitter size={18} /></a>
-                    <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Linkedin size={18} /></a>
-                    <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Instagram size={18} /></a>
-                    <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors"><Mail size={18} /></a>
+                    <a href="#" className="hover:text-foreground transition-colors"><Twitter size={18} /></a>
+                    <a href="#" className="hover:text-foreground transition-colors"><Linkedin size={18} /></a>
+                    <a href="#" className="hover:text-foreground transition-colors"><Instagram size={18} /></a>
+                    <a href="#" className="hover:text-foreground transition-colors"><Mail size={18} /></a>
                 </div>
             </div>
         </footer>

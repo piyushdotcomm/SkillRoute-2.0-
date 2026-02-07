@@ -165,8 +165,8 @@ export default function Quiz() {
                       key={op}
                       onClick={() => handleSelect(op)}
                       className={`p-4 rounded-xl text-left font-medium transition-all duration-200 border-2 flex items-center justify-between group ${answers[q.id] === op
-                          ? 'border-primary bg-primary/5 text-primary shadow-sm'
-                          : 'border-border bg-card hover:border-primary/50 hover:bg-muted/50'
+                        ? 'border-primary bg-primary/5 text-primary shadow-sm'
+                        : 'border-border bg-card hover:border-primary/50 hover:bg-muted/50'
                         }`}
                     >
                       <span>{op}</span>
@@ -208,8 +208,8 @@ export default function Quiz() {
                         key={tag}
                         onClick={() => toggleTag(tag)}
                         className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-200 border-2 ${isSelected
-                            ? 'bg-primary text-primary-foreground border-primary shadow-md transform scale-105'
-                            : 'bg-card text-foreground border-border hover:border-primary/50 hover:bg-muted'
+                          ? 'bg-primary text-primary-foreground border-primary shadow-md transform scale-105'
+                          : 'bg-card text-foreground border-border hover:border-primary/50 hover:bg-muted'
                           }`}
                       >
                         {tag}

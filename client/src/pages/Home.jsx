@@ -19,6 +19,7 @@ import { ContainerScroll } from '../components/ui/container-scroll-animation';
 import { CardStack } from '../components/ui/card-stack';
 import { CategoryList } from '../components/ui/category-list';
 import { TextScramble } from '../components/ui/text-scramble';
+import { GlowCard } from '../components/ui/spotlight-card';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -52,9 +53,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-sm font-medium border border-blue-100 dark:border-blue-800"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium border border-border"
               >
-                <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 For Students (Class 10-12) & Parents
               </motion.div>
 
@@ -62,12 +63,12 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-slate-50 leading-[0.9] text-center"
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-[0.9] text-center"
               >
                 <TextScramble className="block" duration={1.2}>
                   Confusion to
                 </TextScramble>
-                <div className="text-blue-600 dark:text-blue-400">
+                <div className="text-muted-foreground">
                   <TextScramble className="block" duration={1.2} characterSet=". ">
                     Clarity.
                   </TextScramble>
@@ -78,7 +79,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl text-center leading-relaxed font-medum"
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl text-center leading-relaxed font-medum"
               >
                 Stop guessing your future. Our scientific assessment analyzes your strengths to match you with the perfect stream and career path.
               </motion.p>
@@ -89,10 +90,10 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex flex-col sm:flex-row gap-4 pt-4"
               >
-                <Link to="/quiz" className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all hover:-translate-y-1">
+                <Link to="/quiz" className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
                   Start Free Assessment <ArrowRight size={20} />
                 </Link>
-                <Link to="/directory" className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-slate-700 dark:text-slate-300 border-2 border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 transition-all">
+                <Link to="/directory" className="flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-foreground border-2 border-border hover:bg-accent hover:text-accent-foreground transition-all">
                   Explore Careers
                 </Link>
               </motion.div>
@@ -128,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* 4. HOW IT WORKS (Replaced with CategoryList) */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden">
+      <section className="py-24 bg-transparent relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-800 to-transparent" />
 
@@ -167,27 +168,100 @@ export default function Home() {
       </section>
 
       {/* 4. STREAM OVERVIEW */}
-      <section className="py-24 bg-slate-50 dark:bg-slate-900/50 px-6">
+      {/* 5. EXPLORE ACADEMIC STREAMS (Spotlight Cards) */}
+      <section className="py-24 px-6 relative z-10 bg-transparent">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Explore Academic Streams</h2>
-            <p className="text-slate-600 dark:text-slate-400 max-w-xl">Not sure between Science, Commerce, or Arts? Here's a quick look at what each entails.</p>
+          <div className="mb-16 text-center space-y-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white">Explore Academic Streams</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              Not sure between Science, Commerce, or Arts? Here's a quick look at what each entails.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Science (PCM)", sub: "Engineering & Tech", text: "Physics, Math, Chemistry. Best for analytical minds." },
-              { title: "Science (PCB)", sub: "Medical & Research", text: "Biology, Physics, Chemistry. For healthcare enthusiasts." },
-              { title: "Commerce", sub: "Business & Finance", text: "Accounting, Economics, Business. For number crunchers." },
-              { title: "Arts / Humanities", sub: "Creativity & Social", text: "Psychology, History, Lit. For deep thinkers." }
-            ].map((stream, i) => (
-              <div key={i} className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 hover:shadow-lg transition-shadow">
-                <div className="h-1 w-12 bg-blue-600 rounded-full mb-6" />
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{stream.title}</h3>
-                <div className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-3">{stream.sub}</div>
-                <p className="text-sm text-slate-500">{stream.text}</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Science Card */}
+            <GlowCard className="p-8 h-auto" glowColor="blue" customSize>
+              <div className="relative z-20 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
+                  <BrainCircuit className="w-8 h-8 text-blue-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Science</h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-6 flex-1">
+                  Ideal for students with a keen interest in technology, engineering, medicine, and research.
+                  Focuses on analytical thinking and problem-solving.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <span>Engineering (PCM)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <span>Medical (PCB)</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                    <span>Computer Science</span>
+                  </div>
+                </div>
               </div>
-            ))}
+            </GlowCard>
+
+            {/* Commerce Card */}
+            <GlowCard className="p-8 h-auto" glowColor="purple" customSize>
+              <div className="relative z-20 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6">
+                  <LineChart className="w-8 h-8 text-purple-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Commerce</h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-6 flex-1">
+                  Perfect for those fascinated by business, finance, economics, and entrepreneurship.
+                  Develops financial acumen and management skills.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                    <span>Chartered Accountancy</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                    <span>Investment Banking</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                    <span>Business Management</span>
+                  </div>
+                </div>
+              </div>
+            </GlowCard>
+
+            {/* Arts Card */}
+            <GlowCard className="p-8 h-auto" glowColor="orange" customSize>
+              <div className="relative z-20 flex flex-col h-full">
+                <div className="w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center mb-6">
+                  <Compass className="w-8 h-8 text-orange-500" />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Arts & Humanities</h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-6 flex-1">
+                  For creative minds interested in psychology, literature, law, design, and social sciences.
+                  Encourages critical thinking and creativity.
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    <span>Psychology & Law</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    <span>Journalism & Media</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                    <span>Design & Fine Arts</span>
+                  </div>
+                </div>
+              </div>
+            </GlowCard>
           </div>
         </div>
       </section>
@@ -196,7 +270,7 @@ export default function Home() {
       <section className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white">How It Works</h2>
+            <h2 className="text-3xl font-bold text-foreground">How It Works</h2>
           </div>
 
           <div className="space-y-12">
@@ -214,16 +288,16 @@ export default function Home() {
                 key={i}
                 className="flex gap-6 md:items-center"
               >
-                <div className="w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700 font-bold text-xl text-slate-400">
+                <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center shrink-0 border border-border font-bold text-xl text-muted-foreground">
                   {i + 1}
                 </div>
-                <div className="md:flex md:items-center md:gap-6 flex-1 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
-                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg w-fit mb-4 md:mb-0">
+                <div className="md:flex md:items-center md:gap-6 flex-1 bg-card p-6 rounded-2xl border border-border">
+                  <div className="p-3 bg-accent text-foreground rounded-lg w-fit mb-4 md:mb-0">
                     <step.icon size={24} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">{step.title}</h3>
-                    <p className="text-slate-500">{step.desc}</p>
+                    <h3 className="text-lg font-bold text-foreground">{step.title}</h3>
+                    <p className="text-muted-foreground">{step.desc}</p>
                   </div>
                 </div>
               </motion.div>
