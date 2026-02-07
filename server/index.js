@@ -11,7 +11,7 @@ const app = express();
 
 // ✅ CORS setup (allow React frontend)
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: [process.env.FRONTEND_URL, "http://localhost:5173", "https://skill-route-2-0.vercel.app"].filter(Boolean),
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -19,15 +19,23 @@ app.use(cors({
 app.use(express.json());
 
 // ✅ Mongo connection
-if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const DB_URI = process.env.MONGO_URI || process.env.MONGO_DB;
+export let isMongoConnected = false;
+
+if (DB_URI) {
+  mongoose.connect(DB_URI, {
+    serverSelectionTimeoutMS: 5000 // Time out quickly
   })
-  .then(() => console.log('[MONGO] Connected'))
-  .catch(err => console.error('[MONGO] Connection error', err.message));
+    .then(() => {
+      console.log(`[MONGO] Connected to ${DB_URI.split('@').pop()}`);
+      isMongoConnected = true;
+    })
+    .catch(err => {
+      console.warn(`[MONGO] Connection failed (${err.message}). Running in OPTIONAL DB mode.`);
+      isMongoConnected = false;
+    });
 } else {
-  console.warn('[MONGO] MONGO_URI not set – user persistence disabled');
+  console.warn('[MONGO] MONGO_URI not set – running in OPTIONAL DB mode');
 }
 
 // ✅ Log Gemini config
