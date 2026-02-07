@@ -2,35 +2,168 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-surface: #F8FAFC; /* light background */
-  --color-surface-alt: #FFFFFF;
-  --color-text-base: #0F172A;
-  --color-text-soft: #475569;
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 221.2 83.2% 53.3%;
+    /* Blue 600 */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.75rem;
+
+    /* Legacy support variables */
+    --color-surface: #F8FAFC;
+    --color-surface-alt: #FFFFFF;
+    --color-text-soft: #64748B;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    /* Legacy support variables */
+    --color-surface: #0F172A;
+    --color-surface-alt: #1E293B;
+    --color-text-soft: #94A3B8;
+  }
 }
-.dark {
-  --color-surface: #0F172A; /* dark background */
-  --color-surface-alt: #1E293B;
-  --color-text-base: #E2E8F0;
-  --color-text-soft: #94A3B8;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-sans selection:bg-primary/20 selection:text-primary;
+  }
 }
 
-body { @apply font-sans; }
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-lg;
+  }
 
-/* Playful Duolingo-inspired typographic scale */
-.h1 { @apply text-4xl md:text-5xl font-extrabold tracking-tight; }
-.h2 { @apply text-3xl font-bold; }
-.h3 { @apply text-2xl font-bold; }
-.lead { @apply text-lg text-softText; }
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-lg border border-white/5 shadow-lg;
+  }
 
-.card { @apply bg-surfaceAlt rounded-2xl shadow-lg p-6 transition hover:shadow-soft; }
-.btn { @apply inline-flex items-center justify-center gap-2 font-semibold rounded-2xl px-6 py-3 bg-primary text-white shadow-lg hover:bg-primary-dark active:scale-95 transition transform; }
-.btn-outline { @apply border-2 border-primary text-primary hover:bg-primary hover:text-white; }
-.badge { @apply inline-block rounded-full bg-badge text-black text-xs font-semibold px-3 py-1; }
-input, select { @apply rounded-xl border border-gray-300 dark:border-gray-600 bg-surfaceAlt px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary; }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-violet-500;
+  }
+}
 
-/* Scrollbar theming (optional) */
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--color-surface); }
-::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 8px; }
-.dark ::-webkit-scrollbar-thumb { background: #334155; }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50 transition-colors;
+}
+
+/* Typography Scale */
+.h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+.h2 {
+  @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0;
+}
+
+.h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+}
+
+.h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight;
+}
+
+.lead {
+  @apply text-xl text-muted-foreground;
+}
+
+.large {
+  @apply text-lg font-semibold;
+}
+
+.small {
+  @apply text-sm font-medium leading-none;
+}
+
+.muted {
+  @apply text-sm text-muted-foreground;
+}
+
+/* Components */
+.btn {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95 shadow-md hover:shadow-lg hover:shadow-primary/20;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-secondary text-secondary-foreground hover:bg-secondary/80;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 hover:bg-accent hover:text-accent-foreground;
+}
+
+.card {
+  @apply rounded-xl border bg-card text-card-foreground shadow-soft transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+}
